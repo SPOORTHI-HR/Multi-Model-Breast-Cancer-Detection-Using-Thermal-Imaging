@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        #dropZone.dragover {
+            border-color: #ff007b;
+        }
+        #predictButton:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            white-space: pre-wrap;
+        }
+        .shimmer-button {
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+        .shimmer-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #bd0d45c7, rgba(230, 12, 45, 0.8), rgba(209, 102, 140, 0.647));
+            transform: rotate(45deg);
+            transition: all 0.3s;
+        }
+        .shimmer-button:hover::before {
+            top: -150%;
+            left: -150%;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff00a2, #ec0459);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-gray-800">
+
+    <nav class="bg-pink-600 p-4 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold hover:text-blue-300 transition duration-300">PINKSHIELD</a>
+            <div>
+                <a href="#home" class="mx-2 hover:underline">Home</a>
+                <a href="#about" class="mx-2 hover:underline">About</a>
+                <a href="#stats" class="mx-2 hover:underline">Stats</a>
+                <a href="#contact" class="mx-2 hover:underline">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="bg-white py-20 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4 gradient-text">Breast Cancer Detection</h1>
+            <p class="text-lg mb-8">Upload thermal images only for accurate predictions.</p>
+            <div id="dropZone" class="border-2 border-dashed border-gray-400 p-10 rounded-lg cursor-pointer transition duration-300 hover:border-blue-500 mx-auto w-1/2">
+                Drag and drop an image here or click to upload
+                <input type="file" id="fileInput" accept="image/*" class="hidden">
+            </div>
+            <button id="predictButton" class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shimmer-button" disabled style="color: black;font-weight: bold;">Predict</button>
+            <img id="imagePreview" class="mt-6 mx-auto max-w-xs max-h-xs hidden rounded-lg shadow-lg" alt="Image Preview">
+            <div id="result" class="mt-6 text-lg"></div>
+        </div>
+    </header>
+
+    <section id="about" class="bg-gray-200 py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 gradient-text"> Breast Cancer Detection</h2>
+            <p class="text-lg mb-4">Breast cancer is the most prevalent cancer among Indian women, <br />contributing to nearly 30% of new cases and over 24% of related deaths.<br />"three" in every "five" people in India die following a cancer diagnosis, <br />with women bearing a disproportionate burden.</p>
+            <h2 class="text-3xl font-bold mb-6 gradient-text">Challenges Women Face in Early Detection</h2>
+            <ul class="text-lg mb-4">
+                <li>Fear of discomfort and exposure in mammography.</li>
+                <li>Lack of awareness about self-examinations and screening importance.</li>
+                <li>Social stigma associated with discussing breast health.</li>
+            </ul>
+            <h2 class="text-3xl font-bold mb-6 gradient-text">How Our Model Helps</h2>
+            <p class="text-lg mb-4">Our AI-based thermal image-based breast cancer detection model provides a non-invasive, radiation-free, and comfortable alternative to traditional mammography.</p>
+            <ul class="text-lg mb-4">
+                <li>✔ Uses Thermal Imaging: Eliminates the discomfort and exposure of traditional screening.</li>
+            <li>✔ Fast and Accessible: Can be used for preliminary screening, even in remote areas.</li>
+        <li>✔ Early Detection: Helps in identifying potential cases early, encouraging women to consult doctors sooner.</li>    
+    <li>✔ AI-Powered Accuracy: Differentiates between NORMAL vs SICK and further classifies Benign vs Malignant cases, aiding doctors in decision-making.</li>   
+    </ul><br />
+            <p class="text-lg">By providing a comfortable and stigma-free screening option, our model empowers Indian women to prioritize their health, seek medical consultation early, and improve survival rates through timely intervention. <br />This technology aims to bridge the gap in early detection and make breast cancer screening more accessible and acceptable for every woman in India.</p>
+        </div>
+    </section>
+
+    <section id="stats" class="bg-white py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 gradient-text">Statistics</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">98%</h3>
+                    <p class="text-lg">Accuracy in detecting breast cancer.</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">1 in 8</h3>
+                    <p class="text-lg">Women will be diagnosed with breast cancer.</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">2.3 million</h3>
+                    <p class="text-lg">New cases of breast cancer in 2020 worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-pink-600 py-6 text-white">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">Contact me at <a href="spoorthi0223@gmail.com" class="underline hover:text-blue-300 transition duration-300">spoorthi0223@gmail.com</a></p>
+            <p>&copy; 2025 Breast Cancer Detection. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const predictButton = document.getElementById('predictButton');
+        const imagePreview = document.getElementById('imagePreview');
+        const resultDiv = document.getElementById('result');
+        let selectedFile = null;
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                handleFile(fileInput.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            selectedFile = file;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.remove('hidden');
+                predictButton.disabled = false;
+                resultDiv.innerText = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        predictButton.addEventListener('click', () => {
+            if (selectedFile) {
+                uploadFile(selectedFile);
+            }
+        });
+
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultDiv.innerText = `Error: ${data.error}`;
+                    resultDiv.style.color = 'red';
+                } else {
+                    resultDiv.innerText = `Prediction: ${data.prediction}`;
+                    resultDiv.style.color = data.prediction === 'NORMAL' ? 'green' : 'red';
+                }
+            })
+            .catch(error => {
+                resultDiv.innerText = `Error: ${error.message}`;
+                resultDiv.style.color = 'red';
+            });
+        }
+    </script>
+</body>
+</html>
